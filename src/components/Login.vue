@@ -63,6 +63,7 @@ export default {
   methods:{
     onLogin:function(){
       if(this.pState && this.aState){
+        this.LoginSuccessful()
         this.axios.post('/api/test',this.qs.stringify({'account':this.account,'password':this.password}),{
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -98,6 +99,10 @@ export default {
           })
       }
 
+    },
+    LoginSuccessful:function (){
+      this.$router.push('/Home');
+      this.$store.dispatch('turnIsLogin',true)
     },
     makeToast(append = false) {
       this.toastCount++

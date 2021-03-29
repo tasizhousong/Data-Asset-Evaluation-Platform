@@ -13,7 +13,8 @@
     "axios": "^0.21.1",
     "bootstrap-vue": "^2.17.3",
     "echarts": "^4.9.0",
-    "vue": "^2.5.2"
+    "vue": "^2.5.2",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.11.5",

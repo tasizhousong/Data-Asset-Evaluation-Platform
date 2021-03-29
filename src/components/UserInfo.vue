@@ -15,11 +15,10 @@
           <b-sidebar id="sidebar-right" title="修改信息" right shadow>
             <div class="px-3 py-2">
               <p>
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-                in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+                Please enter your corresponding information, we will save your latest information to the database. Please remember your updated mobile phone number for login.
               </p>
-              <b-avatar variant="info" src="https://placekitten.com/300/300" class="align-content-center"></b-avatar>
-              <b-form-file v-model="userInfo.imgPath" class="mt-3" plain>上传头像</b-form-file>
+              <b-avatar variant="info" src="https://placekitten.com/300/300" style="margin-right: 150px"></b-avatar>
+              <b-form-file v-model="userInfo.imgPath" class="mt-3" plain style="margin-left: 20px;margin-right: 20px" placeholder="上传头像"></b-form-file>
               <br>
               <b-form-group
                 id="fieldset-horizontal"
@@ -57,6 +56,7 @@
                 <b-form-radio v-model="userInfo.userSex" :aria-describedby="gender" name="gender" value="男">男</b-form-radio>
                 <b-form-radio v-model="userInfo.userSex" :aria-describedby="gender" name="gender" value="女">女</b-form-radio>
               </b-form-group>
+              <b-button variant="outline-primary" class="text-center">保存</b-button>
 
             </div>
           </b-sidebar>
@@ -72,41 +72,44 @@
       <b-button variant="primary" class="mb-2" v-b-modal.modal-1>
         充值 <b-icon icon="credit-card" aria-hidden="true"></b-icon>
       </b-button>
-      <b-modal id="modal-1" title="充值界面">
-        <p class="my-4">对不起，暂未开启本服务</p>
+      <b-modal id="modal-1" title="充值界面" class="align-content-md-center">
+        <b-row>
+          <b-col>
+            <b-form-group label="请使用支付宝扫码支付" v-slot="{ ariaDescribedby }">
+              <b-form-radio v-model="selected" :aria-describedby="ariaDescribedby" name="some-radios" value="1">￥1/1次</b-form-radio>
+              <b-form-radio v-model="selected" :aria-describedby="ariaDescribedby" name="some-radios" value="10">￥9/10次</b-form-radio>
+              <b-form-radio v-model="selected" :aria-describedby="ariaDescribedby" name="some-radios" value="100">￥28/35次</b-form-radio>
+              <b-form-radio v-model="selected" :aria-describedby="ariaDescribedby" name="some-radios" value="365">￥75/100次</b-form-radio>
+            </b-form-group>
+          </b-col>
+          <b-col>
+            <img src="../assets/QRcode.jpg" width="180px">
+          </b-col>
+        </b-row>
       </b-modal>
 
     </b-card>
-    <label>查询数据查询信息</label>
-   <b-card class="card-body">
+    <br>
+   <b-card class="table-layout">
      <b-list-group>
-       <b-list-group-item class="d-flex justify-content-between align-items-center" v-b-toggle.collapse-1>
-         Cras justo odio
-         <b-collapse id="collapse-1" class="mt-2">
-           <b-card>
-             <p class="card-text">Collapse contents Here</p>
-             <b-button v-b-toggle.collapse-1-inner size="sm">Toggle Inner Collapse</b-button>
-             <b-collapse id="collapse-1-inner" class="mt-2">
-               <b-card>Hello!</b-card>
-             </b-collapse>
-           </b-card>
+       <h2>查询数据查询信息</h2>
+       <br>
+       <b-list-group-item
+         v-for="item in items"
+         class="d-flex justify-content-between align-items-center"
+         v-b-toggle.collapse
+       >
+         数据名称： {{item.数据名称}}  数据预测价格：{{item.数据价格}}
+         <br>
+         <b-collapse id="collapse" class="mt-2">
+           <b-table striped hover :items="items"></b-table>
            <b-button to="/Result" variant="primary">查看详情</b-button>
          </b-collapse>
        </b-list-group-item>
 
-       <b-list-group-item class="d-flex justify-content-between align-items-center" to="/Result">
-         Dapibus ac facilisis in
-         <b-badge variant="primary" pill>2</b-badge>
-       </b-list-group-item>
-
-       <b-list-group-item class="d-flex justify-content-between align-items-center" to="/Result">
-         Morbi leo risus
-         <b-badge variant="primary" pill>1</b-badge>
-       </b-list-group-item>
      </b-list-group>
    </b-card>
 
-    <b-table striped hover :items="items"></b-table>
   </div>
 </template>
 
@@ -123,10 +126,10 @@ export default {
         phoneNumber:13688888888
       },
       items: [
-        { 数据名称: 40, 估计资产: 'Dickerson', 数据量: 'Macdonald',即时性: 'Macdonald' },
-        { 数据名称: 21, 估计资产: 'Larsen', 数据量: 'Shaw' ,即时性: 'Macdonald'},
-        { 数据名称: 89, 估计资产: 'Geneva', 数据量: 'Wilson' ,即时性: 'Macdonald'},
-        { 数据名称: 38, 估计资产: 'Jami', 数据量: 'Carney' ,即时性: 'Macdonald'}
+        { 数据名称: 40, 数据价格:23,估计资产: 'Dickerson', 数据量: 'Macdonald',即时性: 'Macdonald' },
+        { 数据名称: 21, 数据价格:23,估计资产: 'Larsen', 数据量: 'Shaw' ,即时性: 'Macdonald'},
+        { 数据名称: 89, 数据价格:23,估计资产: 'Geneva', 数据量: 'Wilson' ,即时性: 'Macdonald'},
+        { 数据名称: 38, 数据价格:23,估计资产: 'Jami', 数据量: 'Carney' ,即时性: 'Macdonald'}
       ]
     }
   }
@@ -135,9 +138,13 @@ export default {
 
 <style scoped>
 .card_center{
-  width: 400px;
+  width: auto;
   height: auto;
   align-content: center ;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+.table-layout{
   margin-left: 150px;
   margin-right: 150px;
 }

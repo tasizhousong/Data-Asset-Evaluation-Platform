@@ -100,8 +100,8 @@ export default {
   },
   methods:{
     onRegister:function (){
-
       if(this.aState && this.pState && this.vpState && this.vcState){
+        this.RegisterSuccessful()
         this.axios.post('/api/test',this.qs.stringify({'account':this.account,'password':this.password}),{
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -138,7 +138,11 @@ export default {
           })
 
       }
-    }
+    },
+    RegisterSuccessful:function (){
+      this.$router.push('/Home');
+      this.$store.dispatch('turnIsLogin',true)
+    },
   },
   watch: {
     account (newValue, oldValue) { // 监听电话号码

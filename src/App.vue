@@ -13,8 +13,8 @@
             <b-nav-item to="/Home">云估计</b-nav-item>
             <b-nav-item to="/Table">数据估值</b-nav-item>
             <b-nav-item to="/Result">估值结果</b-nav-item>
-            <b-nav-item to="/UserInfo">我的个人</b-nav-item>
-            <b-button type="link" variant="outline-primary" v-bind="LoginState" to="/Login">{{LoginState}}</b-button>
+            <b-nav-item @click="judge">我的个人</b-nav-item>
+            <b-button type="link" variant="outline-primary" v-model="$store.state.loginState" @click="onButton">{{$store.state.loginState}}</b-button>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -31,6 +31,25 @@ export default {
   data() {
     return {
       LoginState:'登陆'
+    }
+  },
+  methods:{
+    onButton:function (){
+      if(this.$store.state.isLogin){
+        alert('你确定要退出吗？')
+        this.$store.dispatch('turnIsLogin',false)
+        this.$router.push('/Login');
+      }
+      else{
+        this.$router.push('/Login');
+      }
+    },
+    judge:function (){
+      if(this.$store.state.isLogin){
+        this.$router.push('/UserInfo');
+      }else{
+        alert('请登录您的账号')
+      }
     }
   }
 }

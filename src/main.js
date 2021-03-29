@@ -6,6 +6,9 @@ import Vue from 'vue'
 import './plugins/bootstrap-vue'
 import App from './App'
 import router from './router'
+//引入共享变量包
+import store from './store/store'
+
 // 引入echarts
 import echarts from 'echarts'
 
@@ -19,6 +22,7 @@ Vue.config.productionTip = false
 //以下用于前后端交接
 Vue.prototype.axios = axios;
 Vue.prototype.qs = Qs;
+
 
 //引入基本模板
 // let echarts = require('echarts/lib/echarts')
@@ -36,5 +40,6 @@ new Vue({
   // components: { App },
   // template: '<App/>'
   render: h => h(App),
-  router    // 注入路由对象
+  router,    // 注入路由对象
+  store
 })
