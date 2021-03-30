@@ -13,6 +13,11 @@ Vue.use(VueRouter)
 export default new VueRouter({
   routes: [
     {
+      path:'/',
+      //redirect 是重新定向
+      redirect:'/home'
+    },
+    {
       path: '/Home',
       name: 'Home',
       component: Home
