@@ -1,9 +1,10 @@
 <template>
   <div>
-    <b-card class="card-center">
+    <br>
+    <b-card class="card-center" style="box-shadow: 0 10px 10px gray">
       <b-row>
         <b-col>
-          <img src="../assets/login1.png" width="400px" height="auto" alt="can't find">
+          <img src="../assets/login.png" width="400px" height="auto" alt="can't find">
         </b-col>
         <hr class="my-4" >
         <b-col>

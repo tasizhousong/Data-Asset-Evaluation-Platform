@@ -3,7 +3,7 @@
   <div>
     <h1 class="text-center">分析结果</h1>
     <p class="text-center">本产品属于数据资产管理技术领域，采用数据资产价值评估模型及市场法进行估值分析。</p>
-    <b-card bg-variant="light" class="card_center">
+    <b-card bg-variant="light" class="card_center" style="box-shadow: 0 10px 10px gray">
       <b-container>
         <b-row>
           <b-col col lg="6">
